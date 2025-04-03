@@ -136,13 +136,13 @@ module uart_tx(
                     end
            end
            STOP   : begin
+                    tx_next = 1'b1;
                     if(tick) begin
                         if(tick_cnt_reg == 7) begin
                             tick_cnt_next = 0;
                             done_next = 1'b1;
                             busy_next = 1'b0;
                             next = IDLE;
-                            tx_next = 1'b1;
                         end
                         else begin
                             tick_cnt_next = tick_cnt_reg + 1;
