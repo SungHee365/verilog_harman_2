@@ -42,7 +42,12 @@ module ControlUnit (
             `OP_TYPE_R : aluControl = operators;
             `OP_TYPE_L : aluControl = `ADD;
             `OP_TYPE_S : aluControl = `ADD;
-            `OP_TYPE_I : aluControl = operators;
+            `OP_TYPE_I : begin 
+                if(operators == 4'b1101)
+                aluControl = operators;
+                else
+                aluControl = {1'b0,operators[2:0]};
+            end
         endcase
     end
 
